@@ -4367,22 +4367,26 @@ function uPlot(opts, data, then) {
 		}
 
 		for (let i = 0; i < offs.length; i++) {
+			
 			if (filts[i] != null) {
-				if (ori == 0){
-					ctx.lineWidth = i % 200 == 0 ? 2 : 1;
-					ctx.strokeStyle = i % 200 == 0 ? "#e08b88" : "#f7bfbe";
+					
+				if (ori == 0) {
+					ctx.lineWidth = filts[i] % 200 == 0 ? 2 : 1;
+					ctx.strokeStyle = filts[i] % 200 == 0 ? "#e08b88" : "#f7bfbe";
 					x0 = x1 = offs[i];
-				}else{
+				}else {
 					ctx.lineWidth = i % 5 == 0 ? 2 : 1;
 					ctx.strokeStyle = i % 5 == 0 ? "#e08b88" : "#f7bfbe";
 					y0 = y1 = offs[i];
 				}
+
+				ctx.beginPath();      // Begin a new path for each line
 				ctx.moveTo(x0, y0);
 				ctx.lineTo(x1, y1);
+				ctx.stroke();          // Stroke each line immediately
 			}
 		}
 
-		ctx.stroke();
 
 		pxAlign == 1 && ctx.translate(-offset, -offset);
 	}
